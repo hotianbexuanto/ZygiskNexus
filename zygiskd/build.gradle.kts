@@ -65,3 +65,14 @@ afterEvaluate {
         }
     }
 }
+
+android {
+    defaultConfig {
+        val abi = System.getenv("ZYGISK_ABI")?.lowercase() ?: "arm64-v8a"
+    }
+    sourceSets {
+        getByName("main") {
+            val abi = System.getenv("ZYGISK_ABI")?.lowercase() ?: "arm64-v8a"
+        }
+    }
+}
