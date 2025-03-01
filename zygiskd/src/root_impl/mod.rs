@@ -3,7 +3,7 @@ mod magisk;
 
 use std::sync::Mutex;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 #[allow(dead_code)]
 pub enum RootImpl {
     None,
@@ -37,7 +37,7 @@ pub fn setup() {
 }
 
 pub fn get_impl() -> RootImpl {
-    *ROOT_IMPL.lock().unwrap()
+    ROOT_IMPL.lock().unwrap().clone()
 }
 
 pub fn uid_granted_root(uid: i32) -> bool {
