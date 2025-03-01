@@ -3,14 +3,17 @@ pub enum RootImpl {
     Magisk,
     KernelSU,
     None,
-    // 删除未使用的 Multiple 变体
 }
 
 static mut ROOT_IMPL: RootImpl = RootImpl::None;
 
 pub fn get_root_impl() -> &'static RootImpl {
-    // 使用 &raw const 替代不安全的静态可变引用
-    unsafe { &raw const ROOT_IMPL }
+    // 使用 std::ptr::addr_of! 宏来安全地获取静态引用
+    unsafe { std::ptr::addr_of!(ROOT_IMPL).as_ref().unwrap() }
 }
 
-// ... existing code ... 
+pub fn set_root_impl(impl_: RootImpl) {
+    unsafe {
+        ROOT_IMPL = impl_;
+    }
+}
