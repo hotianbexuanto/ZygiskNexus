@@ -256,7 +256,7 @@ struct SocketHandler : public EventHandler {
                     break;
                 case SYSTEM_SERVER_STARTED:
                     LOGD("system server started, mounting prop");
-                    if (mount(prop_path.c_str(), "/data/adb/modules/zygisksu/module.prop", nullptr, MS_BIND, nullptr) == -1) {
+                    if (mount(prop_path.c_str(), "/data/adb/modules/zygisknexus/module.prop", nullptr, MS_BIND, nullptr) == -1) {
                         PLOGE("failed to mount prop");
                     }
                     break;
@@ -571,7 +571,7 @@ static bool prepare_environment() {
 }
 
 void init_monitor() {
-    LOGI("Zygisk Next %s", ZKSU_VERSION);
+    LOGI("Zygisk Nexus %s", ZKSU_VERSION);
     LOGI("init monitor started");
     if (!prepare_environment()) {
         exit(1);

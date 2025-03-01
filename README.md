@@ -1,12 +1,15 @@
-# Zygisk Next
+# Zygisk Nexus
 
-Standalone implementation of Zygisk, providing Zygisk API support for KernelSU and a replacement of Magisk's built-in Zygisk.
+Standalone implementation of Zygisk, providing Zygisk API support for KernelSU and Magisk. This is a fork of Zygisk Next with enhanced features.
+
+## Features
+
++ Support for both KernelSU and Magisk simultaneously
++ Priority given to Magisk when both root solutions are present
++ Full Zygisk API compatibility
++ Standalone implementation without requiring built-in Zygisk
 
 ## Requirements
-
-### General
-
-+ No multiple root implementation installed
 
 ### KernelSU
 
@@ -23,4 +26,4 @@ Standalone implementation of Zygisk, providing Zygisk API support for KernelSU a
 
 `PROCESS_ON_DENYLIST` cannot be flagged correctly for isolated processes on Magisk DenyList currently.
 
-Zygisk Next only guarantees the same behavior of Zygisk API, but will NOT ensure Magisk's internal features.
+Zygisk Nexus only guarantees the same behavior of Zygisk API, but will NOT ensure Magisk's internal features.

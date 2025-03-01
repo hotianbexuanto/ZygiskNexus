@@ -18,8 +18,8 @@ fun String.execute(currentWorkingDir: File = file("./")): String {
 val gitCommitCount = "git rev-list HEAD --count".execute().toInt()
 val gitCommitHash = "git rev-parse --verify --short HEAD".execute()
 
-val moduleId by extra("zygisksu")
-val moduleName by extra("Zygisk Next")
+val moduleId by extra("zygisknexus")
+val moduleName by extra("Zygisk Nexus")
 val verName by extra("v4-0.9.1.1")
 val verCode by extra(gitCommitCount)
 val commitHash by extra(gitCommitHash)
@@ -42,7 +42,7 @@ tasks.register("Delete", Delete::class) {
 
 fun Project.configureBaseExtension() {
     extensions.findByType(LibraryExtension::class)?.run {
-        namespace = "icu.nullptr.zygisk.next"
+        namespace = "icu.nullptr.zygisk.nexus"
         compileSdk = androidCompileSdkVersion
         ndkVersion = androidCompileNdkVersion
         buildToolsVersion = androidBuildToolsVersion
