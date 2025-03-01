@@ -1,17 +1,19 @@
 mod kernelsu;
 mod magisk;
 
+use std::sync::Mutex;
+
 #[derive(Debug)]
+#[allow(dead_code)]
 pub enum RootImpl {
     None,
     TooOld,
     Abnormal,
-    Multiple,
     KernelSU,
     Magisk,
 }
 
-static mut ROOT_IMPL: RootImpl = RootImpl::None;
+static ROOT_IMPL: Mutex<RootImpl> = Mutex::new(RootImpl::None);
 
 pub fn setup() {
     let ksu_version = kernelsu::get_kernel_su();
@@ -31,13 +33,11 @@ pub fn setup() {
         },
         (Some(_), Some(magisk::Version::TooOld)) => RootImpl::TooOld,
     };
-    unsafe {
-        ROOT_IMPL = impl_;
-    }
+    *ROOT_IMPL.lock().unwrap() = impl_;
 }
 
-pub fn get_impl() -> &'static RootImpl {
-    unsafe { &ROOT_IMPL }
+pub fn get_impl() -> RootImpl {
+    *ROOT_IMPL.lock().unwrap()
 }
 
 pub fn uid_granted_root(uid: i32) -> bool {
