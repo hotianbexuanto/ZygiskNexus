@@ -3,10 +3,10 @@ plugins {
     alias(libs.plugins.rust.android)
 }
 
-val minKsuVersion: Int by rootProject.extra
-val maxKsuVersion: Int by rootProject.extra
-val minMagiskVersion: Int by rootProject.extra
-val verCode: Int by rootProject.extra
+val minKsuVersion = rootProject.extra["minKsuVersion"].toString().toInt()
+val maxKsuVersion = rootProject.extra["maxKsuVersion"].toString().toInt()
+val minMagiskVersion = rootProject.extra["minMagiskVersion"].toString().toInt()
+val verCode = rootProject.extra["verCode"].toString().toInt()
 val verName: String by rootProject.extra
 val commitHash: String by rootProject.extra
 
