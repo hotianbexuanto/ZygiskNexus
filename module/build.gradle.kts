@@ -61,7 +61,7 @@ androidComponents.onVariants { variant ->
                 "moduleId" to moduleId,
                 "moduleName" to moduleName,
                 "versionName" to "$verName ($verCode-$commitHash-$variantLowered)",
-                "versionCode" to verCode
+                "versionCode" to verCode.toString()
             )
         }
         from("$projectDir/src/mazoku")
@@ -69,10 +69,10 @@ androidComponents.onVariants { variant ->
             include("customize.sh", "post-fs-data.sh", "service.sh", "zygisk-ctl.sh")
             val tokens = mapOf(
                 "DEBUG" to if (buildTypeLowered == "debug") "true" else "false",
-                "MIN_KSU_VERSION" to "$minKsuVersion",
-                "MIN_KSUD_VERSION" to "$minKsudVersion",
-                "MAX_KSU_VERSION" to "$maxKsuVersion",
-                "MIN_MAGISK_VERSION" to "$minMagiskVersion",
+                "MIN_KSU_VERSION" to minKsuVersion.toString(),
+                "MIN_KSUD_VERSION" to minKsudVersion.toString(),
+                "MAX_KSU_VERSION" to maxKsuVersion.toString(),
+                "MIN_MAGISK_VERSION" to minMagiskVersion.toString(),
             )
             filter<ReplaceTokens>("tokens" to tokens)
             filter<FixCrLfFilter>("eol" to FixCrLfFilter.CrLf.newInstance("lf"))
