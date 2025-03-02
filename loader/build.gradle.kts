@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.agp.lib)
 }
 
-val verCode = rootProject.extra["verCode"].toString().toInt()
+val verCode: Int by rootProject.extra
 val verName: String by rootProject.extra
 val commitHash: String by rootProject.extra
 

@@ -63,32 +63,3 @@ subprojects {
         configureBaseExtension()
     }
 }
-
-android {
-    namespace = "com.github.zygisknexus"
-    compileSdk = 34
-
-    defaultConfig {
-        minSdk = 24
-        testOptions {
-            targetSdk = 34
-        }
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-        }
-    }
-
-    buildFeatures {
-        buildConfig = true
-    }
-}
-
-tasks.register("generateLinkerWrapper") {
-    doLast {
-        val outputDir = layout.buildDirectory.dir("generated/linker").get().asFile
-        // ... existing code ...
-    }
-}
