@@ -22,12 +22,12 @@ plugins {
 
 val moduleId: String by rootProject.extra
 val moduleName: String by rootProject.extra
-val verCode = (rootProject.extra["verCode"] as String).toInt()
+val verCode: Int = rootProject.extra["verCode"].toString().toInt()
 val verName: String by rootProject.extra
-val minKsuVersion = (rootProject.extra["minKsuVersion"] as String).toInt()
-val minKsudVersion = (rootProject.extra["minKsudVersion"] as String).toInt()
-val maxKsuVersion = (rootProject.extra["maxKsuVersion"] as String).toInt()
-val minMagiskVersion = (rootProject.extra["minMagiskVersion"] as String).toInt()
+val minKsuVersion: Int = rootProject.extra["minKsuVersion"].toString().toInt()
+val minKsudVersion: Int = rootProject.extra["minKsudVersion"].toString().toInt()
+val maxKsuVersion: Int = rootProject.extra["maxKsuVersion"].toString().toInt()
+val minMagiskVersion: Int = rootProject.extra["minMagiskVersion"].toString().toInt()
 val commitHash: String by rootProject.extra
 
 android.buildFeatures {
