@@ -28,13 +28,13 @@ val minKsudVersion by extra(11425)
 val maxKsuVersion by extra(20000)
 val minMagiskVersion by extra(26402)
 
-val androidMinSdkVersion by extra(24)
+val androidMinSdkVersion by extra(26)
 val androidTargetSdkVersion by extra(34)
 val androidCompileSdkVersion by extra(34)
 val androidBuildToolsVersion by extra("34.0.0")
 val androidCompileNdkVersion by extra("26.0.10792818")
-val androidSourceCompatibility by extra(JavaVersion.VERSION_17)
-val androidTargetCompatibility by extra(JavaVersion.VERSION_17)
+val androidSourceCompatibility by extra(JavaVersion.VERSION_11)
+val androidTargetCompatibility by extra(JavaVersion.VERSION_11)
 
 tasks.register("Delete", Delete::class) {
     delete(rootProject.buildDir)
@@ -42,7 +42,7 @@ tasks.register("Delete", Delete::class) {
 
 fun Project.configureBaseExtension() {
     extensions.findByType(LibraryExtension::class)?.run {
-        namespace = "com.github.zygisknexus"
+        namespace = "icu.nullptr.zygisk.nexus"
         compileSdk = androidCompileSdkVersion
         ndkVersion = androidCompileNdkVersion
         buildToolsVersion = androidBuildToolsVersion
@@ -50,36 +50,10 @@ fun Project.configureBaseExtension() {
         defaultConfig {
             minSdk = androidMinSdkVersion
             targetSdk = androidTargetSdkVersion
-            testOptions {
-                targetSdk = androidTargetSdkVersion
-            }
-            lint {
-                targetSdk = androidTargetSdkVersion
-            }
         }
 
         lint {
             abortOnError = true
-        }
-
-        buildFeatures {
-            buildConfig = true
-        }
-
-        buildTypes {
-            release {
-                isMinifyEnabled = false
-                proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            }
-        }
-
-        compileOptions {
-            sourceCompatibility = androidSourceCompatibility
-            targetCompatibility = androidTargetCompatibility
-        }
-
-        kotlinOptions {
-            jvmTarget = "17"
         }
     }
 }
@@ -87,6 +61,28 @@ fun Project.configureBaseExtension() {
 subprojects {
     plugins.withId("com.android.library") {
         configureBaseExtension()
+    }
+}
+
+android {
+    namespace = "com.github.zygisknexus"
+    compileSdk = 34
+
+    defaultConfig {
+        minSdk = 24
+        testOptions {
+            targetSdk = 34
+        }
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+        }
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }
 
